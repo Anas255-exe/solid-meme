@@ -1,0 +1,6 @@
+typer
+rich
+google-generativeai
+pydantic
+chromadb
+langchain
