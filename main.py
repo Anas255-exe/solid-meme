@@ -1,6 +1,6 @@
 import typer
 from src.loader import load_codebase
-
+from src.trend import save_trend, print_trend
 from src.analyzer import analyze_file
 
 app = typer.Typer(help="AI Code Quality Intelligence Agent")
@@ -14,6 +14,26 @@ from src.reporter import summarize_report
 from src.reporter import summarize_report, summarize_report_with_graph
 # from rich.console import Console
 from src.chat import build_vector_store, answer_query
+app = typer.Typer(
+    help="""
+    🚀 AI Code Quality Intelligence Agent
+
+    Analyze code repositories, generate reports, track trends, and interact with 
+    your codebase using Retrieval-Augmented Generation (RAG).
+
+    Available commands:
+      • analyze   → Analyze a codebase and detect issues
+      • report    → Generate a summary report & dependency graph
+      • chat      → Interactive Q&A about the codebase
+      • trend     → Show code quality trend comparison
+
+    Example usage:
+      python main.py analyze ./src
+      python main.py report ./src
+      python main.py chat ./src
+      python main.py trend
+    """
+)
 
 @app.command()
 def chat(path: str):
@@ -49,9 +69,11 @@ def report(path: str):
     for file_path, content in code_files.items():
         issues = analyze_file(file_path, content[:2000])  # analyze quietly
         all_issues.extend(issues)
+    save_trend(all_issues)
 
     # ✅ Print just the summary
     summarize_report_with_graph(all_issues, path)
+    print_trend()
 
 @app.command()
 def analyze(path: str):
@@ -84,6 +106,14 @@ def analyze(path: str):
             table.add_row(issue.category, f"[{sev_color}]{issue.severity}[/{sev_color}]", issue.issue_summary, issue.suggested_fix)
 
         console.print(table)
+        save_trend(issues)
+
+@app.command()
+def trend():
+    """
+    Show issue trend comparison between the last two runs.
+    """
+    print_trend()
 
 
 if __name__ == "__main__":
