@@ -80,6 +80,7 @@ def answer_query(collection, query: str):
     - Always attribute details to the correct file(s).
     - If multiple files show relevant info, explain the roles of each one.
     - If no relevant info is found in context, reply: "⚠️ Not enough information in codebase."
+    -Dont use backticks or bold formatting in your answer the reponse should align according to a terminal interface.
     """
 
     response = model.generate_content(prompt)

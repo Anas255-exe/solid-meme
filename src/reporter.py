@@ -5,7 +5,8 @@ from src.analyzer import Issue
 import google.generativeai as genai
 import os
 from dotenv import load_dotenv
-
+from src import visualizer
+from src.visualizer import generate_dependency_graph
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
@@ -45,7 +46,8 @@ Docs(2), Complexity(2)
     except Exception as e:
         return f"{file} → {len(issues)} issues (fallback summary)."
 
-def summarize_report(all_issues: List[Issue]) -> None:
+# def summarize_report(all_issues: List[Issue],repo_path:str) -> None:
+def summarize_report(all_issues: List[Issue], repo_path: str) -> None:
     """
     Repo-level summary with natural-language per-file description.
     """
@@ -64,3 +66,15 @@ def summarize_report(all_issues: List[Issue]) -> None:
     for file, issues in issues_by_file.items():
         sentence = summarize_with_gemini(file, issues)
         console.print(f"📝 {sentence}", style="white")
+
+def summarize_report_with_graph(all_issues: List[Issue], repo_path: str) -> None:
+    """
+    Repo-level summary with dependency graph visualization.
+    """
+    summarize_report(all_issues, repo_path)
+    console = Console()
+    console.print(f"\n🔎 Scanning dependency graph for: {repo_path} (Languages: Python + JS)")
+    if generate_dependency_graph(repo_path):
+        console.print("🕸️ Dependency graph saved as dependency_graph.png", style="bold green")
+    else:
+        console.print("⚠️ No dependencies found to visualize.", style="bold yellow")

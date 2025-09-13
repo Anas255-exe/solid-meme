@@ -4,3 +4,9 @@ google-generativeai
 pydantic
 chromadb
 langchain
+matplotlib
+python-dotenv
+pytest
+networkx
+scipy
+

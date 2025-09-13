@@ -11,6 +11,7 @@ from rich.table import Table
 from src.loader import load_codebase
 # from src.analyzer import analyze_file
 from src.reporter import summarize_report
+from src.reporter import summarize_report, summarize_report_with_graph
 # from rich.console import Console
 from src.chat import build_vector_store, answer_query
 
@@ -50,7 +51,7 @@ def report(path: str):
         all_issues.extend(issues)
 
     # ✅ Print just the summary
-    summarize_report(all_issues)
+    summarize_report_with_graph(all_issues, path)
 
 @app.command()
 def analyze(path: str):
