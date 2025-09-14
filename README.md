@@ -105,7 +105,7 @@ uvicorn app:app --reload --host 0.0.0.0 --port 8000
 
 Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)
 
-Deployed on Railway: `<INSERT RAILWAY LINK>/docs`
+Deployed on Railway: `https://solid-meme-production.up.railway.app/docs`
 
 **Endpoints:**
 
@@ -186,3 +186,4 @@ Deployed on Railway: `<INSERT RAILWAY LINK>/docs`
 * [NetworkX](https://networkx.org/)
 
 ---
+
