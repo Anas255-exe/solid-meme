@@ -120,20 +120,19 @@ Deployed on Railway: `https://solid-meme-production.up.railway.app/docs`
 
 ### CLI Report
 
-*(Insert screenshot of terminal output here)*
+
 <img width="1200" height="558" alt="image" src="https://github.com/user-attachments/assets/d1054db2-59a0-42f4-9bbb-e505e106846a" />
 
 
 ### Charts
 
-*(Insert bar chart, pie chart, trend chart images)*
 <img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/7daebdca-a09b-4d1c-a16c-143380cf4387" />
 
 
 
 ### Dependency Graph
 
-*(Insert dependency graph image here)*
+
 <img width="1220" height="819" alt="image" src="https://github.com/user-attachments/assets/ea70abec-a4b5-4074-bba2-d2c7c42bb55c" />
 
 
@@ -186,4 +185,5 @@ Deployed on Railway: `https://solid-meme-production.up.railway.app/docs`
 * [NetworkX](https://networkx.org/)
 
 ---
+
 
